@@ -89,8 +89,8 @@ run_step() {
 
 # setup and install conda environment
 if run_step "1"; then
-    source /home/ff/cs152/sp23/chipyard-cs152-sp23/.conda-env/etc/profile.d/conda.sh
-    conda activate /home/ff/cs152/sp23/chipyard-cs152-sp23/.conda-env
+    source /home/tangke/cs152/chipyard/.conda-env/etc/profile.d/conda.sh
+    conda activate /home/tangke/cs152/chipyard/.conda-env
 fi
 
 if [ -z "$FORCE_FLAG" ]; then

@@ -151,12 +151,13 @@ PLATFORM_OPTS = $(shell \
 TIMESCALE_OPTS := $(shell verilator --version | perl -lne 'if (/(\d.\d+)/ && $$1 >= 4.034) { print "--timescale 1ns/1ps"; }')
 
 # see: https://github.com/ucb-bar/riscv-mini/issues/31
-MAX_WIDTH_OPTS = $(shell verilator --version | perl -lne 'if (/(\d.\d+)/ && $$1 > 4.016) { print "--max-num-width 1048576"; }')
+# MAX_WIDTH_OPTS = $(shell verilator --version | perl -lne 'if (/(\d.\d+)/ && $$1 > 4.016) { print "--max-num-width 1048576"; }')
+MAX_WIDTH_OPTS = --max-num-width 1048576
 
 PREPROC_DEFINES := \
 	+define+PRINTF_COND=\$$c\(\"verbose\",\"\&\&\"\,\"done_reset\"\) \
 	+define+STOP_COND=\$$c\(\"done_reset\"\)
-
+TIMING_OPTS = --timing
 VERILATOR_NONCC_OPTS = \
 	$(RUNTIME_PROFILING_VFLAGS) \
 	$(RUNTIME_THREADS) \
@@ -168,7 +169,8 @@ VERILATOR_NONCC_OPTS = \
 	$(PREPROC_DEFINES) \
 	--top-module $(VLOG_MODEL) \
 	--vpi \
-	-f $(sim_common_files)
+	-f $(sim_common_files) \
+	$(TIMING_OPTS)
 
 #----------------------------------------------------------------------------------------
 # gcc configuration/optimization
