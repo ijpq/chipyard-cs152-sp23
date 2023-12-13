@@ -12,11 +12,11 @@ target
 *~
 .idea
 .DS_Store
-env.sh
+# env.sh
 tags
 *~
 .bsp/
-.conda-env/
+# .conda-env/
 .#*
 first-clone-setup-fast-log
 .bloop/
